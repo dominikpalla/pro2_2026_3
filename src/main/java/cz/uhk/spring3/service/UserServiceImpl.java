@@ -1,49 +1,38 @@
 package cz.uhk.spring3.service;
 
 import cz.uhk.spring3.model.User;
+import cz.uhk.spring3.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private ArrayList<User> users = new ArrayList<User>();
+    private UserRepository userRepository;
+
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public void saveUser(User user) {
-        if(user.getId() != 0){
-            User orginal = getUser(user.getId());
-            if(orginal != null){
-                users.remove(orginal);
-            }
-        } else {
-            user.setId(1);
-            if(!users.isEmpty()){
-                user.setId(users.get(users.size()-1).getId() + 1);
-            }
-        }
-        users.add(user);
+        userRepository.save(user);
     }
 
     @Override
     public User getUser(long id) {
-        for (User user : users) {
-            if (user.getId() == id) {
-                return user;
-            }
-        }
-        return null;
+        return userRepository.findById(id).orElse(null);
     }
 
     @Override
     public void deleteUser(User user) {
-        users.remove(user);
+        userRepository.delete(user);
     }
 
     @Override
     public List<User> getAllUsers() {
-        return users;
+        return userRepository.findAll();
     }
 }

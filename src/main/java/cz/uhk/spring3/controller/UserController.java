@@ -2,13 +2,10 @@ package cz.uhk.spring3.controller;
 
 import cz.uhk.spring3.model.User;
 import cz.uhk.spring3.service.UserService;
-import org.jspecify.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/users")
