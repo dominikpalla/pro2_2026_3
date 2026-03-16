@@ -8,6 +8,7 @@
 <h1>Detail of the User</h1>
 <a th:href="@{/users/}">Back to List of all Users</a><br><br>
 <b>Name: </b> <span th:text="${user.name}"></span><br><br>
+<b>Email: </b> <span th:text="${user.email}"></span><br><br>
 <a th:href="@{'/users/' + ${user.id} + '/edit'}">Edit User</a><br>
 <a th:href="@{'/users/' + ${user.id} + '/delete'}">Delete User</a>
 </body>
