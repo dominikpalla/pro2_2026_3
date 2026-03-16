@@ -2,6 +2,7 @@ package cz.uhk.spring3.controller;
 
 import cz.uhk.spring3.model.Item;
 import cz.uhk.spring3.service.ItemService;
+import cz.uhk.spring3.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +13,12 @@ import org.springframework.web.bind.annotation.*;
 public class ItemController {
 
     private ItemService itemService;
+    private UserService userService;
 
     @Autowired
-    public ItemController(ItemService itemService) {
+    public ItemController(ItemService itemService, UserService userService) {
         this.itemService = itemService;
+        this.userService = userService;
     }
 
     @GetMapping("/")
@@ -42,6 +45,7 @@ public class ItemController {
     @GetMapping("/create")
     public String create(Model model){
         model.addAttribute("item", new Item());
+        model.addAttribute("users", userService.getAllUsers());
         return "items_edit";
     }
 
@@ -50,6 +54,7 @@ public class ItemController {
         Item u = itemService.getItem(id);
         if (u != null) {
             model.addAttribute("item", u);
+            model.addAttribute("users", userService.getAllUsers());
             return "items_edit";
         }
         return "redirect:/items/";

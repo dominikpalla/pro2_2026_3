@@ -2,6 +2,8 @@ package cz.uhk.spring3.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -11,6 +13,16 @@ public class User {
     private String name;
     private String password;
     private String email;
+    @OneToMany(mappedBy = "user")
+    private List<Item> items;
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 
     public String getEmail() {
         return email;

@@ -10,6 +10,16 @@ public class Item {
     private long id;
     private String name;
     private String description;
+    @ManyToOne
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     //gettery a settery pomocí Alt + Insert
 
