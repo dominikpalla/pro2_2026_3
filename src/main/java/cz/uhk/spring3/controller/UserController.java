@@ -26,7 +26,9 @@ public class UserController {
 
     @GetMapping("/{id}")
     public String detail(@PathVariable int id, Model model){
-        model.addAttribute("user", userService.getUser(id));
+        User u = userService.getUser(id);
+        model.addAttribute("user", u);
+        model.addAttribute("userDTO", userService.getUserBasicsDTO(u.getEmail()));
         return "users_detail";
     }
 

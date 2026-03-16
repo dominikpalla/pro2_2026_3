@@ -1,6 +1,7 @@
 package cz.uhk.spring3.service;
 
 import cz.uhk.spring3.model.User;
+import cz.uhk.spring3.model.dto.UserBasicsDTO;
 import cz.uhk.spring3.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public UserBasicsDTO getUserBasicsDTO(String email) {
+        return userRepository.findByEmail(email);
     }
 }
