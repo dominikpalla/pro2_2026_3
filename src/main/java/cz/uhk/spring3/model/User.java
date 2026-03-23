@@ -11,10 +11,28 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    private String username;
     private String password;
+    private String role;
     private String email;
     @OneToMany(mappedBy = "user")
     private List<Item> items;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public List<Item> getItems() {
         return items;

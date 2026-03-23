@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Main Page</title>
 </head>
 <body>
 <h1>Main Page of my application</h1>
+<h3 sec:authentication="name"></h3>
 <a th:href="@{/users/}">List of all Users</a><br>
-<a th:href="@{/items/}">List of all Items</a><br>
+<a th:href="@{/items/}">List of all Items</a><br><br>
+<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}">Admin Panel</a><br><br>
+<a th:href="@{/logout}">Logout</a><br>
 </body>
 </html>

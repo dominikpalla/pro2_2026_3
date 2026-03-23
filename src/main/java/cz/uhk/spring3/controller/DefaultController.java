@@ -11,4 +11,14 @@ public class DefaultController {
         return "index";
     }
 
+    @GetMapping("/403")
+    public String forbidden(){
+        return "403";
+    }
+
+    @GetMapping("/admin")
+    public String admin(){
+        return "admin";
+    }
+
 }
